@@ -427,3 +427,75 @@ Every file and directory in Linux has permissions that control who can read, wri
 
 ```bash
 ls -l
+```
+**Example output:**
+```text
+-rw-r--r-- 1 kali kali 123 Oct 5 20:00 notes.txt
+```
+
+**Breakdown of `-rw-r--r--`:**
+* **Type:** `-` = Regular file (`d` = Directory)
+* **Owner (`u`):** `rw-` (Read & Write)
+* **Group (`g`):** `r--` (Read-only)
+* **Others (`o`):** `r--` (Read-only)
+
+---
+
+### Changing Permissions with `chmod`
+
+#### Symbolic Method (Recommended for Beginners)
+
+```bash
+chmod u+x file.txt               # Add execute permission for owner
+chmod g-w file.txt               # Remove write permission from group
+chmod o+r file.txt               # Add read permission for others
+chmod a+x script.sh              # Add execute for all users
+chmod u=rwx,g=rx,o= file.txt     # Assign discrete permissions per scope
+```
+
+#### Numeric (Octal) Method
+
+| Value | Permission | Description |
+| :---: | :---: | :--- |
+| **`4`** | `r` | Read |
+| **`2`** | `w` | Write |
+| **`1`** | `x` | Execute |
+| **`0`** | `-` | No permissions |
+
+Values are summed across each category:
+
+| Total | Meaning | Breakdown |
+| :---: | :--- | :--- |
+| **`7`** | `rwx` | $4 + 2 + 1$ |
+| **`6`** | `rw-` | $4 + 2$ |
+| **`5`** | `r-x` | $4 + 1$ |
+| **`4`** | `r--` | $4$ |
+| **`0`** | `---` | $0$ |
+
+**Examples:**
+```bash
+chmod 755 script.sh     # Owner: rwx (7) | Group: r-x (5) | Others: r-x (5)
+chmod 644 file.txt      # Owner: rw- (6) | Group: r-- (4) | Others: r-- (4)
+chmod 700 private.txt   # Owner: rwx (7) | Group: --- (0) | Others: --- (0)
+```
+
+---
+
+### Changing Ownership with `chown`
+
+```bash
+sudo chown user:group file.txt
+sudo chown kali:kali file.txt
+sudo chown -R kali:kali folder/     # Recursively update folder contents
+```
+
+---
+
+### Common Permission Configurations
+
+| Permission | Octal | Typical Use Case |
+| :---: | :---: | :--- |
+| `rwxr-xr-x` | **755** | Shell scripts, shared binaries, executable programs |
+| `rw-r--r--` | **644** | Standard user files, documents, web assets |
+| `rwx------` | **700** | Private scripts, SSH key folders (`~/.ssh`), secure directories |
+| `rwxrwxrwx` | **777** | Full global access (security risk; avoid in production) |
