@@ -1,4 +1,4 @@
-```markdown
+
 # Linux-Fundamentals-with-Kali/Parrot
 
 Basic Linux commands and fundamental concepts using Kali Linux / Parrot OS.
