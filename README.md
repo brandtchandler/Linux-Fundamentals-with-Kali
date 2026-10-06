@@ -1,11 +1,11 @@
 
 # Linux-Fundamentals-with-Kali/Parrot
 
-Basic Linux commands and fundamental concepts using Kali Linux / Parrot OS.
+Basic Linux commands and fundamental concepts using Kali Linux or Parrot OS.
 
 ## Lab Environment
 
-- **Operating System**: Kali Linux / Parrot Linux
+- **Operating System**: Kali Linux or Parrot Linux
 - **Interface**: Terminal
 - **Shell**: Bash (Konsole)
 - **Environment**: Personal authorized cybersecurity lab
