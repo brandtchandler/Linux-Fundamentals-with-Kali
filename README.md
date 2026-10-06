@@ -285,47 +285,5 @@ tar -xzvf archive.tar.gz
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-OptionMeaning--helpShow help-v / --verboseShow detailed output-q / --quietSuppress output-fForce (no prompts)-r or -RRecursive-iInteractive (ask for confirmation)
-
-6. Quick Practice Examples
-Bashls -lah /home                  # Detailed list of home directory
-rm -i *.tmp                    # Delete .tmp files with confirmation
-cp -rv documents/ backup/      # Copy folder with progress
-mkdir -p ~/projects/linux/notes
-grep -i "failed" /var/log/syslog
-tar -xzvf archive.tar.gz       # Extract a .tar.gz file
-### Explanation
-
 The `whoami` command displays the username of the currently logged-in user.
 The result shows that the current user is `kali`.
