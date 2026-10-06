@@ -282,7 +282,7 @@ mkdir -p ~/projects/linux/notes
 grep -i "failed" /var/log/syslog
 tar -xzvf archive.tar.gz
 ```
-```
+
 The `whoami` command displays the username of the currently logged-in user.
 The result shows that the current user is `kali`.
 
@@ -398,7 +398,7 @@ mv notes_backup.txt notes_old.txt
 # Create another folder and move file into it
 mkdir archive
 mv notes_old.txt archive/
-
+```
 8. File Permissions
 Every file and directory in Linux has permissions that control who can read, write, or execute them.
 Permission Types
