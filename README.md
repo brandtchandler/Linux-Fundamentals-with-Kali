@@ -283,7 +283,5 @@ grep -i "failed" /var/log/syslog
 tar -xzvf archive.tar.gz
 ```
 ```
-
-
 The `whoami` command displays the username of the currently logged-in user.
 The result shows that the current user is `kali`.
