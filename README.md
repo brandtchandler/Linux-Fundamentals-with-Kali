@@ -285,3 +285,145 @@ tar -xzvf archive.tar.gz
 ```
 The `whoami` command displays the username of the currently logged-in user.
 The result shows that the current user is `kali`.
+
+# Working with Files and Directories in Linux
+
+A practical guide to creating, editing, modifying, and managing files and directories in the Linux terminal (Kali / Parrot).
+
+---
+
+## 1. Working with Directories
+
+| Action                      | Command       | Example                              | Notes |
+|-----------------------------|---------------|--------------------------------------|-------|
+| Create directory            | `mkdir`       | `mkdir notes`                        | Creates a single folder |
+| Create nested directories   | `mkdir -p`    | `mkdir -p projects/linux/lab1`       | Creates parent folders if needed |
+| Navigate into directory     | `cd`          | `cd projects/linux`                  | Change directory |
+| Go up one level             | `cd ..`       | `cd ..`                              | Move to parent directory |
+| Go to home directory        | `cd` or `cd ~`| `cd`                                 | Returns to your home directory |
+| Show current path           | `pwd`         | `pwd`                                | Print working directory |
+| List contents               | `ls`          | `ls -lah`                            | `-l` long, `-a` hidden, `-h` human-readable |
+| Remove empty directory      | `rmdir`       | `rmdir notes`                        | Only works if directory is empty |
+| Remove directory + contents | `rm -r`       | `rm -r projects`                     | Recursive delete (be careful!) |
+| Force remove                | `rm -rf`      | `rm -rf old_folder`                  | No confirmation + recursive |
+
+---
+
+## 2. Creating Files
+
+| Method                        | Command / Example                        | Description |
+|-------------------------------|------------------------------------------|-----------|
+| Create empty file             | `touch file.txt`                         | Creates a new empty file (or updates timestamp) |
+| Create file with content      | `echo "Hello World" > file.txt`          | Creates file and writes text (overwrites if exists) |
+| Append text to file           | `echo "More text" >> file.txt`           | Adds text to the end of the file |
+| Create using cat              | `cat > file.txt`                         | Type content, then press `Ctrl + D` to save |
+| Create using text editor      | `nano file.txt`                          | Opens nano editor (easiest for beginners) |
+
+---
+
+## 3. Editing Files
+
+| Editor   | Command                  | How to Use                                      | Best For |
+|----------|--------------------------|--------------------------------------------------|----------|
+| nano     | `nano file.txt`          | Edit → `Ctrl + O` (save) → `Ctrl + X` (exit)    | Beginners |
+| vim      | `vim file.txt`           | Press `i` to insert → `Esc` → `:wq` to save & quit | Advanced users |
+| cat      | `cat >> file.txt`        | Type text → `Ctrl + D` to finish                | Quick appends |
+| Redirect | `echo "text" > file.txt` | Overwrites the entire file                      | Simple changes |
+
+**Recommended for beginners:** Use `nano`.
+
+---
+
+## 4. Viewing File Contents
+
+| Command   | Example                     | Description |
+|-----------|-----------------------------|-----------|
+| `cat`     | `cat file.txt`              | Shows entire file |
+| `less`    | `less file.txt`             | Scroll through file (`q` to quit) |
+| `head`    | `head -n 20 file.txt`       | Shows first 20 lines |
+| `tail`    | `tail -n 20 file.txt`       | Shows last 20 lines |
+| `tail -f` | `tail -f /var/log/syslog`   | Live view (useful for logs) |
+
+---
+
+## 5. Copying, Moving, and Renaming
+
+| Action                | Command | Example                          |
+|-----------------------|---------|----------------------------------|
+| Copy file             | `cp`    | `cp file.txt backup.txt`         |
+| Copy directory        | `cp -r` | `cp -r notes/ notes_backup/`     |
+| Move / Rename         | `mv`    | `mv oldname.txt newname.txt`     |
+| Move file to folder   | `mv`    | `mv file.txt documents/`         |
+| Rename directory      | `mv`    | `mv old_folder new_folder`       |
+
+---
+
+## 6. Deleting Files
+
+| Action                | Command  | Example                | Warning |
+|-----------------------|----------|------------------------|---------|
+| Delete file           | `rm`     | `rm file.txt`          | Permanent |
+| Delete multiple files | `rm`     | `rm file1.txt file2.txt` | - |
+| Interactive delete    | `rm -i`  | `rm -i *.txt`          | Asks for confirmation |
+| Force delete          | `rm -f`  | `rm -f file.txt`       | No confirmation |
+
+> **Warning:** There is no Trash/Recycle Bin in the terminal. `rm` permanently deletes files.
+
+---
+
+## 7. Quick Practice Workflow
+
+```bash
+# Create a project folder
+mkdir -p ~/labs/linux/lab1
+cd ~/labs/linux/lab1
+
+# Create files
+touch notes.txt
+echo "This is my first note" > notes.txt
+echo "Second line" >> notes.txt
+
+# Edit the file
+nano notes.txt
+
+# View content
+cat notes.txt
+
+# Make a backup
+cp notes.txt notes_backup.txt
+
+# Rename a file
+mv notes_backup.txt notes_old.txt
+
+# Create another folder and move file into it
+mkdir archive
+mv notes_old.txt archive/
+
+8. File Permissions
+Every file and directory in Linux has permissions that control who can read, write, or execute them.
+Permission Types
+## 8. File Permissions
+
+Every file and directory in Linux has permissions that control who can read, write, or execute them.
+
+### Permission Types
+
+| Symbol | Meaning  | Description                                       |
+|--------|----------|---------------------------------------------------|
+| `r`    | Read     | View file contents / list directory               |
+| `w`    | Write    | Modify file / create or delete files in directory |
+| `x`    | Execute  | Run a file as a program / enter a directory       |
+
+### Permission Categories
+
+| Category | Symbol | Meaning                              |
+|----------|--------|--------------------------------------|
+| Owner    | `u`    | The user who owns the file           |
+| Group    | `g`    | Users who belong to the file’s group |
+| Others   | `o`    | Everyone else                        |
+| All      | `a`    | Owner + Group + Others               |
+
+### Viewing Permissions
+
+```bash
+ls -l
