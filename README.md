@@ -487,14 +487,36 @@ sudo chown user:group file.txt
 sudo chown kali:kali file.txt
 sudo chown -R kali:kali folder/     # Recursively update folder contents
 ```
+# Linux-Fundamentals-with-Kali/Parrot
+
+Basic Linux commands and fundamental concepts using Kali Linux or Parrot OS.
+
+## Lab Environment
+
+- **Operating System**: Kali Linux or Parrot Linux
+- **Interface**: Terminal
+- **Shell**: Bash (Konsole)
+- **Environment**: Personal authorized cybersecurity lab
 
 ---
 
-### Common Permission Configurations
+## Lab 03 - Pipes, Redirects & Filters
 
-| Permission | Octal | Typical Use Case |
-| :---: | :---: | :--- |
-| `rwxr-xr-x` | **755** | Shell scripts, shared binaries, executable programs |
-| `rw-r--r--` | **644** | Standard user files, documents, web assets |
-| `rwx------` | **700** | Private scripts, SSH key folders (`~/.ssh`), secure directories |
-| `rwxrwxrwx` | **777** | Full global access (security risk; avoid in production) |
+One of the most powerful features of Linux is the ability to combine commands together.
+
+### Redirects
+
+| Symbol | Meaning                          | Example                          |
+|--------|----------------------------------|----------------------------------|
+| `>`    | Redirect output (overwrite)      | `echo "Hello" > file.txt`        |
+| `>>`   | Redirect output (append)         | `echo "World" >> file.txt`       |
+| `<`    | Redirect input                   | `sort < file.txt`                |
+| `2>`   | Redirect errors                  | `command 2> errors.txt`          |
+| `&>`   | Redirect both output and errors  | `command &> all.txt`             |
+
+### Pipes
+
+The pipe (`|`) sends the output of one command as input to another command.
+
+```bash
+command1 | command2 | command3
