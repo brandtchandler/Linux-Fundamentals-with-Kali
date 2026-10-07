@@ -751,3 +751,52 @@ dig google.com
 nmap localhost
 ```
 
+```markdown
+## Skill - Bash Scripting Basics
+
+### Creating a Simple Script
+
+```bash
+#!/bin/bash
+
+# This is a comment
+echo "Hello, World!"
+```
+
+### Key Concepts
+
+| Concept         | Example                         | Description             |
+|-----------------|---------------------------------|-------------------------|
+| Shebang         | `#!/bin/bash`                   | Defines the interpreter |
+| Variables       | `name="Kali"`                   | Store data              |
+| User input      | `read name`                     | Get input from user     |
+| Arguments       | `$1`, `$2`, `$@`                | Command-line arguments  |
+| If statement    | `if [ condition ]; then ... fi` | Decision making         |
+| For loop        | `for i in 1 2 3; do ... done`   | Repeat actions          |
+| Make executable | `chmod +x script.sh`            | Allow script to run     |
+
+### Practice
+
+```bash
+# 1. Create a script
+nano hello.sh
+```
+
+Paste this content:
+
+```bash
+#!/bin/bash
+
+echo "What is your name?"
+read name
+echo "Hello, $name! Welcome to Linux scripting."
+```
+
+```bash
+# 2. Make it executable
+chmod +x hello.sh
+
+# 3. Run the script
+./hello.sh
+```
+```
