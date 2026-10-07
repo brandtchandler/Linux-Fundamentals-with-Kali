@@ -12,7 +12,7 @@ Basic Linux commands and fundamental concepts using Kali Linux or Parrot OS.
 
 ---
 
-## Lab 01 - System Information
+## Linux - System Information
 
 ### Intro Terms and Concepts
 
@@ -284,7 +284,6 @@ tar -xzvf archive.tar.gz
 ```
 
 The `whoami` command displays the username of the currently logged-in user.
-The result shows that the current user is `kali`.
 
 # Working with Files and Directories in Linux
 
