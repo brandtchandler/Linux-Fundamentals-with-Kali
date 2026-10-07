@@ -799,4 +799,3 @@ chmod +x hello.sh
 # 3. Run the script
 ./hello.sh
 ```
-```
