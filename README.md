@@ -488,4 +488,266 @@ sudo chown kali:kali file.txt
 sudo chown -R kali:kali folder/     # Recursively update folder contents
 ```
 Common Permission Examples
-PermissionNumericUse Caserwxr-xr-x755Scripts and executablesrw-r--r--644Normal filesrwx------700Private files/foldersrwxrwxrwx777Full access (avoid when possible)
+text| Permission | Numeric | Use Case                          |
+| ---------- | ------- | --------------------------------- |
+| rwxr-xr-x  | 755     | Scripts and executables           |
+| rw-r--r--  | 644     | Normal files                      |
+| rwx------  | 700     | Private files/folders             |
+| rwxrwxrwx  | 777     | Full access (avoid when possible) |
+
+## Skill - Pipes, Redirects & Filters
+
+### Common Filters
+
+| Command | Purpose                         | Example                        |
+|---------|---------------------------------|--------------------------------|
+| `grep`  | Filter lines matching a pattern | `ls -l \| grep "txt"`          |
+| `sort`  | Sort lines                      | `cat file.txt \| sort`         |
+| `uniq`  | Remove duplicate lines          | `sort file.txt \| uniq`        |
+| `wc`    | Count lines, words, characters  | `cat file.txt \| wc -l`        |
+| `head`  | Show first lines                | `ls -l \| head -n 5`           |
+| `tail`  | Show last lines                 | `ls -l \| tail -n 5`           |
+| `cut`   | Extract columns                 | `cut -d: -f1 /etc/passwd`      |
+| `tr`    | Translate/delete characters     | `echo "hello" \| tr 'a-z' 'A-Z'` |
+
+### Practice
+
+```bash
+# 1. Create a file and redirect output
+echo "banana" > fruits.txt
+echo "apple" >> fruits.txt
+echo "orange" >> fruits.txt
+echo "apple" >> fruits.txt
+
+# 2. Sort the file
+sort fruits.txt
+
+# 3. Sort and remove duplicates
+sort fruits.txt | uniq
+
+# 4. Count how many lines
+cat fruits.txt | wc -l
+
+# 5. Combine multiple tools
+sort fruits.txt | uniq | wc -l
+
+# 6. Filter with grep
+cat fruits.txt | grep "apple"
+```
+
+## Skill - Searching (find + grep)
+
+### grep – Search Inside Files
+
+| Option | Meaning             | Example                         |
+|--------|---------------------|---------------------------------|
+| `-i`   | Case-insensitive    | `grep -i "error" file.txt`      |
+| `-r`   | Recursive           | `grep -r "password" /home`      |
+| `-n`   | Show line numbers   | `grep -n "root" /etc/passwd`    |
+| `-v`   | Invert match        | `grep -v "nologin" /etc/passwd` |
+| `-l`   | Show only filenames | `grep -rl "TODO" .`             |
+| `-c`   | Count matches       | `grep -c "failed" auth.log`     |
+
+### find – Search for Files and Directories
+
+| Option       | Meaning                    | Example                               |
+|--------------|----------------------------|---------------------------------------|
+| `-name`      | Search by name             | `find /home -name "*.txt"`            |
+| `-iname`     | Case-insensitive name      | `find /home -iname "*.pdf"`           |
+| `-type f`    | Files only                 | `find . -type f`                      |
+| `-type d`    | Directories only           | `find . -type d`                      |
+| `-size +10M` | Bigger than 10MB           | `find / -size +100M 2>/dev/null`      |
+| `-mtime -7`  | Modified in last 7 days    | `find . -mtime -7`                    |
+| `-perm`      | Search by permissions      | `find / -perm -4000 2>/dev/null`      |
+| `-exec`      | Execute command on results | `find . -name "*.tmp" -exec rm {} \;` |
+
+### Practice
+
+```bash
+# 1. Search for the word "root" in /etc/passwd
+grep "root" /etc/passwd
+
+# 2. Case-insensitive search
+grep -i "kali" /etc/passwd
+
+# 3. Find all .txt files in your home directory
+find ~ -name "*.txt"
+
+# 4. Find all directories in /etc
+find /etc -type d 2>/dev/null | head
+
+# 5. Find files larger than 50MB
+find / -size +50M 2>/dev/null
+
+# 6. Combine find + grep
+find /var/log -name "*.log" 2>/dev/null | head
+```
+
+## Skill - Package Management (APT)
+
+Kali and Parrot use the **APT** package manager.
+
+### Essential APT Commands
+
+| Command                        | Description                        |
+|--------------------------------|------------------------------------|
+| `sudo apt update`              | Update package list                |
+| `sudo apt upgrade`             | Upgrade installed packages         |
+| `sudo apt install package`     | Install a package                  |
+| `sudo apt remove package`      | Remove a package                   |
+| `sudo apt purge package`       | Remove package + config files      |
+| `sudo apt search keyword`      | Search for packages                |
+| `sudo apt show package`        | Show package information           |
+| `apt list --installed`         | List installed packages            |
+| `sudo apt autoremove`          | Remove unused dependencies         |
+
+### Practice
+
+```bash
+# 1. Update the package list
+sudo apt update
+
+# 2. Search for a tool (example: nmap)
+apt search nmap
+
+# 3. Install a lightweight tool
+sudo apt install tree -y
+
+# 4. Verify installation
+which tree
+tree --version
+
+# 5. Remove the package
+sudo apt remove tree -y
+
+# 6. Clean up
+sudo apt autoremove -y
+```
+
+## Skill - Process Management
+
+### Viewing Processes
+
+| Command               | Description                         |
+|-----------------------|-------------------------------------|
+| `ps`                  | Show processes                      |
+| `ps aux`              | Detailed list of all processes      |
+| `ps aux \| grep name` | Find specific process               |
+| `top`                 | Real-time process viewer            |
+| `htop`                | Improved interactive process viewer |
+| `pgrep name`          | Find PID of a process               |
+
+### Managing Processes
+
+| Command        | Description                            |
+|----------------|----------------------------------------|
+| `kill PID`     | Terminate a process gracefully         |
+| `kill -9 PID`  | Force kill a process                   |
+| `killall name` | Kill all processes by name             |
+| `Ctrl + C`     | Stop the current foreground process    |
+| `Ctrl + Z`     | Suspend current process                |
+| `bg`           | Resume suspended process in background |
+| `fg`           | Bring background process to foreground |
+| `&`            | Start process in background            |
+
+### Practice
+
+```bash
+# 1. View your processes
+ps aux | head
+
+# 2. Start a background process
+sleep 300 &
+
+# 3. Find the process
+ps aux | grep sleep
+
+# 4. Kill the process (replace PID with actual number)
+kill <PID>
+
+# 5. Try top (press q to quit)
+top
+```
+
+## Skill - User & Group Management
+
+### User Information
+
+| Command           | Description                   |
+|-------------------|-------------------------------|
+| `whoami`          | Current username              |
+| `id`              | User ID and group information |
+| `who`             | Logged-in users               |
+| `w`               | Detailed logged-in users      |
+| `cat /etc/passwd` | List of users                 |
+| `cat /etc/group`  | List of groups                |
+
+### Managing Users (Requires sudo)
+
+| Command                           | Description                   |
+|-----------------------------------|-------------------------------|
+| `sudo adduser username`           | Create a new user             |
+| `sudo deluser username`           | Delete a user                 |
+| `sudo passwd username`            | Change user password          |
+| `sudo usermod -aG group username` | Add user to a group           |
+| `groups username`                 | Show groups a user belongs to |
+
+### Practice
+
+```bash
+# 1. Check current user info
+whoami
+id
+
+# 2. View logged-in users
+who
+
+# 3. Create a new test user
+sudo adduser testuser
+
+# 4. Switch to the new user
+su - testuser
+
+# 5. Exit back to original user
+exit
+
+# 6. Delete the test user
+sudo deluser testuser --remove-home
+```
+
+## Skill - Networking Basics
+
+### Essential Networking Commands
+
+| Command             | Description                 |
+|---------------------|-----------------------------|
+| `ip a`              | Show IP addresses           |
+| `ip r`              | Show routing table          |
+| `ping target`       | Test connectivity           |
+| `traceroute target` | Show path to target         |
+| `ss -tuln`          | Show listening ports        |
+| `netstat -tuln`     | Older version of ss         |
+| `curl example.com`  | Fetch webpage content       |
+| `wget url`          | Download files              |
+| `dig domain`        | DNS lookup                  |
+| `nmap target`       | Port scanning (very useful) |
+
+### Practice
+
+```bash
+# 1. Check your IP address
+ip a
+
+# 2. Test connectivity
+ping -c 4 8.8.8.8
+
+# 3. Check listening ports
+ss -tuln
+
+# 4. DNS lookup
+dig google.com
+
+# 5. Simple port scan on yourself (localhost)
+nmap localhost
+```
+
