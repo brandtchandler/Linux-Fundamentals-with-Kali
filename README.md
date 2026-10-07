@@ -520,3 +520,60 @@ The pipe (`|`) sends the output of one command as input to another command.
 
 ```bash
 command1 | command2 | command3
+
+# Linux-Fundamentals-with-Kali/Parrot
+
+Basic Linux commands and fundamental concepts using Kali Linux or Parrot OS.
+
+## Lab Environment
+
+- **Operating System**: Kali Linux or Parrot Linux
+- **Interface**: Terminal
+- **Shell**: Bash (Konsole)
+- **Environment**: Personal authorized cybersecurity lab
+
+---
+
+## Lab 10 - File Compression & Archiving
+
+Compressing and archiving files is essential for backups, transferring data, and managing disk space.
+
+### Common Tools
+
+| Tool     | Description                              | File Extension |
+|----------|------------------------------------------|----------------|
+| `tar`    | Archive multiple files/directories       | `.tar`         |
+| `gzip`   | Compress a single file                   | `.gz`          |
+| `tar + gzip` | Archive + compress                    | `.tar.gz` / `.tgz` |
+| `zip`    | Archive and compress (Windows-friendly)  | `.zip`         |
+| `bzip2`  | Higher compression than gzip             | `.bz2`         |
+| `xz`     | Very high compression                    | `.xz`          |
+
+### tar Commands
+
+| Command                        | Description                              |
+|--------------------------------|------------------------------------------|
+| `tar -cvf archive.tar folder/` | Create archive                           |
+| `tar -xvf archive.tar`         | Extract archive                          |
+| `tar -tvf archive.tar`         | List contents of archive                 |
+| `tar -czvf archive.tar.gz folder/` | Create compressed archive (gzip)     |
+| `tar -xzvf archive.tar.gz`     | Extract compressed archive               |
+| `tar -cjvf archive.tar.bz2 folder/` | Create archive with bzip2            |
+| `tar -cJvf archive.tar.xz folder/`  | Create archive with xz               |
+
+**Common `tar` options:**
+- `-c` → Create
+- `-x` → Extract
+- `-v` → Verbose
+- `-f` → Filename
+- `-z` → Use gzip
+- `-j` → Use bzip2
+- `-J` → Use xz
+- `-t` → List contents
+
+### zip & unzip
+
+```bash
+zip -r archive.zip folder/          # Create zip archive
+unzip archive.zip                   # Extract zip archive
+unzip -l archive.zip                # List contents
