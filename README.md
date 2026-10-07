@@ -487,18 +487,6 @@ sudo chown user:group file.txt
 sudo chown kali:kali file.txt
 sudo chown -R kali:kali folder/     # Recursively update folder contents
 ```
-# Linux-Fundamentals-with-Kali/Parrot
-
-Basic Linux commands and fundamental concepts using Kali Linux or Parrot OS.
-
-## Lab Environment
-
-- **Operating System**: Kali Linux or Parrot Linux
-- **Interface**: Terminal
-- **Shell**: Bash (Konsole)
-- **Environment**: Personal authorized cybersecurity lab
-
----
 
 ## Lab 03 - Pipes, Redirects & Filters
 
